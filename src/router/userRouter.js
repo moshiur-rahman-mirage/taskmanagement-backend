@@ -20,11 +20,6 @@ router.post('/', async (req, res) => {
 })
 
 
-
-
-
-
-
 router.get('/:email', async (req, res) => {
 
     // verifyToken
@@ -38,18 +33,18 @@ router.get('/:email', async (req, res) => {
 });
 
 
+router.post('/', async (req, res) => {
+    try {
+        const newUser = new Users(req.body);
 
-
-
-
-
-
-
-
-
-
-
-
+        const savedInstance = await newUser.save()
+        res.json(savedInstance);
+    }
+    catch (error) {
+        // console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
 
 
 
